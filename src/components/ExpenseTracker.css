@@ -1,0 +1,118 @@
+.expense-tracker-widget {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.total-badge {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.add-expense-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.expense-input-name {
+    flex: 2;
+}
+
+.expense-input-amount {
+    flex: 1;
+}
+
+.add-expense-form input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.4rem 0.6rem;
+    color: white;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.add-expense-form button {
+    background: #10b981;
+    border: none;
+    border-radius: 6px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+}
+
+.add-expense-form button:hover {
+    background: #059669;
+}
+
+.expenses-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-right: 5px;
+}
+
+.expense-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.expense-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.expense-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.expense-name {
+    font-size: 0.95rem;
+    color: #f1f5f9;
+}
+
+.expense-date {
+    font-size: 0.7rem;
+    color: #64748b;
+}
+
+.expense-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.expense-amount {
+    color: #f87171;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.delete-btn:hover {
+    color: #ef4444;
+}

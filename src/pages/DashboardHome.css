@@ -1,0 +1,121 @@
+.dashboard-home {
+    width: 100%;
+    /* Allow height to grow with content, parent handles scroll */
+    min-height: 100%;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    /* Remove local overflow to prevent nested scrollbars */
+}
+
+/* Fluid Grid Layout */
+.dashboard-grid {
+    display: grid;
+    /* 2x2 Matrix */
+    grid-template-areas:
+        "clock todo"
+        "timer expense";
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Grid Sections */
+.timer-section {
+    grid-area: timer;
+}
+
+.todo-section {
+    grid-area: todo;
+}
+
+.expense-section {
+    grid-area: expense;
+}
+
+.clock-section {
+    grid-area: clock;
+    /* Allow it to be flexible */
+}
+
+/* Premium Card / Widget Container */
+.grid-item {
+    background: rgba(17, 24, 39, 0.7);
+    /* Deep dark blue/slate */
+
+    /* Glassmorphism */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    /* Soft Borders & Elevation */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    /* Top highlight */
+
+    /* Rounded Corners (Restored) */
+    border-radius: 24px;
+
+    /* Shadows - Soft & Deep */
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.3),
+        0 10px 15px -3px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.02);
+    /* Inner glow */
+
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+    overflow: hidden;
+
+    /* Ensure squares */
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+}
+
+/* Hover Effect - Lift & Glow */
+.grid-item:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.4),
+        0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Timer Specific: Center content for the circle */
+.timer-section {
+    align-items: center;
+    justify-content: center;
+}
+
+/* Widget Header Typography */
+.widget-header h3,
+.clock-header h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
