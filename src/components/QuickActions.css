@@ -1,0 +1,77 @@
+.quick-actions-bar {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    z-index: 100;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quick-actions-bar:hover {
+    bottom: 2.2rem;
+    box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.6);
+    background: rgba(15, 23, 42, 0.95);
+}
+
+.quick-action-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.quick-action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.quick-action-btn.primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+}
+
+.quick-action-btn.primary:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    box-shadow: 0 6px 10px -1px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+}
+
+.action-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 0.2rem;
+}
+
+/* Tooltip behavior or refined mobile approach could be added */
+@media (max-width: 480px) {
+    .quick-action-btn span {
+        display: none;
+    }
+
+    .quick-action-btn {
+        padding: 0.8rem;
+    }
+}

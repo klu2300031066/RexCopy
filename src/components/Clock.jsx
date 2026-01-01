@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Clock as ClockIcon } from 'lucide-react';
 import './Clock.css';
 
-const Clock = () => {
+const Clock = ({ weeklyTotal }) => {
     const [time, setTime] = useState(new Date());
 
     useEffect(() => {
@@ -28,7 +28,14 @@ const Clock = () => {
                 <h3>Current Time</h3>
             </div>
             <div className="clock-display">
-                <div className="time">{formatTime(time)}</div>
+                <div className="time">
+                    {formatTime(time)}
+                    {typeof weeklyTotal === 'number' && (
+                        <span className="weekly-total-inline" style={{ display: 'block', fontSize: '0.4em', opacity: 0.7, marginTop: '5px' }}>
+                            Week: ₹{weeklyTotal.toFixed(2)}
+                        </span>
+                    )}
+                </div>
                 <div className="date">{formatDate(time)}</div>
             </div>
         </div>

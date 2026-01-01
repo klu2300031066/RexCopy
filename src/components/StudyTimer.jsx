@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, RotateCcw, Coffee, Zap } from 'lucide-react';
+import useLocalStorage from '../hooks/useLocalStorage';
 import './StudyTimer.css';
 
 const StudyTimer = () => {
@@ -8,6 +9,7 @@ const StudyTimer = () => {
     const [isBreak, setIsBreak] = useState(false);
     const [durationInput, setDurationInput] = useState(25);
     const timerRef = useRef(null);
+    const [sessions, setSessions] = useLocalStorage('rex_study_sessions', []);
 
     const totalTime = isBreak ? 5 * 60 : durationInput * 60;
     const progress = ((totalTime - timeLeft) / totalTime) * 100;
@@ -28,6 +30,14 @@ const StudyTimer = () => {
             clearInterval(timerRef.current);
             setIsActive(false);
             if (!isBreak) {
+                // Focus session completed!
+                const newSession = {
+                    id: Date.now(),
+                    date: new Date().toISOString(),
+                    duration: durationInput
+                };
+                setSessions(prev => [...prev, newSession]);
+
                 setIsBreak(true);
                 setTimeLeft(5 * 60);
             } else {
@@ -36,7 +46,7 @@ const StudyTimer = () => {
             }
         }
         return () => clearInterval(timerRef.current);
-    }, [isActive, timeLeft, isBreak, durationInput]);
+    }, [isActive, timeLeft, isBreak, durationInput, setSessions]);
 
     const toggleTimer = () => setIsActive(!isActive);
     const resetTimer = () => {
@@ -52,7 +62,7 @@ const StudyTimer = () => {
     };
 
     return (
-        <div className="study-timer-hero">
+        <div className="study-timer-hero" id="study-timer-widget">
             <div className={`timer-circle-container ${isActive ? 'pulsing' : ''}`}>
                 <svg
                     height={radius * 2}
@@ -92,6 +102,7 @@ const StudyTimer = () => {
                 <button
                     className={`hero-btn main-action ${isActive ? 'active' : ''}`}
                     onClick={toggleTimer}
+                    id="study-timer-start-btn"
                 >
                     {isActive ? "Pause" : "Start Focus"}
                 </button>

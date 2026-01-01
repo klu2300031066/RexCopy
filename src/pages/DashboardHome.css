@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
+    padding: 2rem 2rem 0.5rem 2rem;
     /* Remove local overflow to prevent nested scrollbars */
 }
 

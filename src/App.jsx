@@ -1,10 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import DashboardLayout from './layouts/DashboardLayout';
 import DashboardHome from './pages/DashboardHome';
 
-// We import index.css here to ensure global styles are applied
-// However, the dashboard layout has its own specific styles that override some defaults
 import './index.css';
 
 function App() {
@@ -17,7 +15,7 @@ function App() {
                 </Route>
             </Routes>
         </Router>
-    )
+    );
 }
 
-export default App
+export default App;

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
+import useStreak from '../hooks/useStreak';
+import StreakCard from './StreakCard';
 import { Plus, Trash2, CheckCircle, Circle } from 'lucide-react';
 import './TodoList.css';
 
 const TodoList = () => {
     const [tasks, setTasks] = useLocalStorage('rex_tasks', []);
     const [newTask, setNewTask] = useState('');
+    const { streak, updateStreak } = useStreak('rex_streak_task');
 
     const addTask = () => {
         if (!newTask.trim()) return;
@@ -14,9 +17,21 @@ const TodoList = () => {
     };
 
     const toggleTask = (id) => {
-        setTasks(tasks.map(task =>
-            task.id === id ? { ...task, completed: !task.completed } : task
-        ));
+        setTasks(tasks.map(task => {
+            if (task.id === id) {
+                const newCompletedStatus = !task.completed;
+                // If marking as complete, update streak
+                if (newCompletedStatus) {
+                    updateStreak();
+                }
+                return {
+                    ...task,
+                    completed: newCompletedStatus,
+                    completedAt: newCompletedStatus ? Date.now() : null
+                };
+            }
+            return task;
+        }));
     };
 
     const deleteTask = (id) => {
@@ -35,6 +50,7 @@ const TodoList = () => {
 
             <div className="add-task-row">
                 <input
+                    id="todo-input"
                     type="text"
                     placeholder="Add a new task..."
                     value={newTask}
@@ -60,6 +76,10 @@ const TodoList = () => {
                         </button>
                     </div>
                 ))}
+            </div>
+
+            <div style={{ marginTop: 'auto', paddingTop: '1rem' }}>
+                <StreakCard streak={streak} label="Task Streak" />
             </div>
         </div>
     );
